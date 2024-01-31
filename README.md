@@ -50,6 +50,34 @@ print(ans)
 ### [상미](<./부분배열 고르기/상미.py>)
 
 ```py
+# 백준_ 2104_ 부분배열 고르기
+
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+nums = list(map(int, input().split()))
+s = 0
+stack = []
+
+for i in range(N):
+    width = 0
+    # 새로 들어오는 수가 stack의 마지막 수보다 작으면 비교 들어감
+    while stack and nums[i] < stack[-1][0]:
+        width += stack[-1][1]
+        s = max(s, width * stack[-1][0])
+        stack.pop()
+
+    width += nums[i]
+    stack.append((nums[i], width))
+
+width = 0
+while stack:
+    width += stack[-1][1]
+    s = max(s, width * stack[-1][0])
+    stack.pop()
+
+print(s)
 
 ```
 
@@ -87,7 +115,7 @@ def solution():
     prefix[1] = arr[0]
     for i in range(1, N):
         prefix[i+1] = arr[i] + prefix[i]
-    
+
     # 비교 리스트 stack
     stack = []
     # 최댓값 비교 대상
@@ -104,11 +132,11 @@ def solution():
         # 현재 값: 최솟값 후보
         # stack에 넣을 값: 최솟값 후보, 최장수열의 최댓값
         stack.append((tmp, last_max_idx))
-    
+
     print(maxv)
 
 if __name__ == "__main__":
-    solution()  
+    solution()
 
 ```
 
