@@ -280,5 +280,8 @@ if __name__ == "__main__":
 
 <details>
 <summary>접기/펼치기</summary>
+## 부분배열 고르기
+![2104](https://github.com/AlgoAlgo-ssafy-seoul-9th/20th_study/assets/102012985/f20eaeec-fb18-4ca6-9140-d1e207a86e1b)
+![2104_2](https://github.com/AlgoAlgo-ssafy-seoul-9th/20th_study/assets/102012985/f67998d3-f8cb-4fa3-8da5-963a52880744)
 
 </details>
