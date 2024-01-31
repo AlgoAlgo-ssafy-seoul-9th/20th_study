@@ -87,7 +87,7 @@ def solution():
     prefix[1] = arr[0]
     for i in range(1, N):
         prefix[i+1] = arr[i] + prefix[i]
-    
+
     # 비교 리스트 stack
     stack = []
     # 최댓값 비교 대상
@@ -104,17 +104,44 @@ def solution():
         # 현재 값: 최솟값 후보
         # stack에 넣을 값: 최솟값 후보, 최장수열의 최댓값
         stack.append((tmp, last_max_idx))
-    
+
     print(maxv)
 
 if __name__ == "__main__":
-    solution()  
+    solution()
 
 ```
 
 ### [승우](<./부분배열 고르기/승우.py>)
 
 ```py
+import sys
+# sys.stdin = open('input.txt', 'r')
+input = sys.stdin.readline
+
+N = int(input())
+
+case = list(map(int,input().split()))
+
+max_value = 0
+stack = [[case[0], case[0]]]
+
+for i in range(1, N):
+    temp = 0
+    while stack and case[i] < stack[-1][0]:
+        temp += stack[-1][1]
+        max_value = max(max_value, stack[-1][0] * temp)
+        stack.pop()
+    temp += case[i]
+    stack.append([case[i], temp])
+
+temp = 0
+while stack:
+    temp += stack[-1][1]
+    max_value = max(max_value, stack[-1][0] * temp)
+    stack.pop()
+
+print(max_value)
 
 ```
 
@@ -241,6 +268,41 @@ if __name__ == "__main__":
 ### [승우](<./오아시스 재결합/승우.py>)
 
 ```py
+import sys
+# sys.stdin = open('input.txt', 'r')
+input = sys.stdin.readline
+
+N = int(input())
+
+stack = []
+count = 0
+for i in range(1, N+1):
+    cur_input = int(input())
+    while stack:
+        if stack[-1][0] < cur_input:
+            count += 1
+            count += stack[-1][2]
+            stack.pop()
+            continue
+        elif stack[-1][0] == cur_input:
+            count += 1
+            count += stack[-1][2]
+            stack[-1][2] += 1
+            if len(stack) != 1:
+                count += 1
+                break
+            else:
+                break
+        else:
+            count += 1
+            stack.append([cur_input, i, 0])
+            break
+
+    if len(stack) == 0:
+        # 겹쳤을 경우 세번째 변수에 1씩 추가
+        stack.append([cur_input, i, 0])
+
+print(count)
 
 ```
 
