@@ -389,4 +389,7 @@ print(count)
 <img src="https://github.com/AlgoAlgo-ssafy-seoul-9th/20th_study/assets/102012985/f20eaeec-fb18-4ca6-9140-d1e207a86e1b" width="500" />
 <img src="https://github.com/AlgoAlgo-ssafy-seoul-9th/20th_study/assets/102012985/f67998d3-f8cb-4fa3-8da5-963a52880744" width="500" />
 
+## 오아시스 재결합
+<img src="https://github.com/AlgoAlgo-ssafy-seoul-9th/20th_study/assets/102012985/8e6aa366-131f-4cc6-ac79-582b863ecac0" width="500" />
+
 </details>
