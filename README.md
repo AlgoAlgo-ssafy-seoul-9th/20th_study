@@ -240,7 +240,42 @@ print(ans)
 ### [상미](<./오아시스 재결합/상미.py>)
 
 ```py
+import sys
+input = sys.stdin.readline
 
+N = int(input())
+height = [int(input()) for _ in range(N)]
+
+stack = []      # (키, cnt)로 append
+ans = 0
+
+for h in height:
+
+  # 스택 끝 값보다 키 크면 pop
+  while stack and stack[-1][0] < h:
+    ans += stack.pop()[1]
+
+  # 스택이 비어있으면 해당 키 append하고 continue
+  if not stack:
+    stack.append((h, 1))
+    continue
+
+  # 스택 끝 값의 키와 같을 때
+  if stack[-1][0] == h:
+    cnt = stack.pop()[1]
+    ans += cnt
+
+    if stack:
+        ans += 1
+    stack.append((h, cnt+1))
+
+  # 스택 끝 값의 키보다 작을 때
+  else:
+    stack.append((h, 1))
+    ans += 1
+
+# 결과값 출력
+print(ans)
 ```
 
 ### [병국](<./오아시스 재결합/병국.py>)
@@ -343,8 +378,8 @@ print(count)
 <details>
 <summary>접기/펼치기</summary>
 
-
 ## 부분배열 고르기
+
 <img src="https://github.com/AlgoAlgo-ssafy-seoul-9th/20th_study/assets/102012985/f20eaeec-fb18-4ca6-9140-d1e207a86e1b" width="500" />
 <img src="https://github.com/AlgoAlgo-ssafy-seoul-9th/20th_study/assets/102012985/f67998d3-f8cb-4fa3-8da5-963a52880744" width="500" />
 
