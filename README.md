@@ -239,50 +239,56 @@ print(ans)
 
 ### [상미](<./오아시스 재결합/상미.py>)
 
-```py
+````py
+## 백준_ 3015_ 오아시스 재결합
+
 import sys
 input = sys.stdin.readline
 
-N = int(input())
-height = [int(input()) for _ in range(N)]
+num_ppl = int(input()) # 사람의 수
 
-stack = []      # (키, cnt)로 append
-ans = 0
+stack = [] # [(높이, 개수)]
+answer = 0
 
-for h in height:
+# 계속 감소하는 수열 만들기
 
-  # 스택 끝 값보다 키 크면 pop
-  while stack and stack[-1][0] < h:
-    ans += stack.pop()[1]
+for _ in range(num_ppl):
 
-  # 스택이 비어있으면 해당 키 append하고 continue
-  if not stack:
-    stack.append((h, 1))
-    continue
+    person = int(input())
 
-  # 스택 끝 값의 키와 같을 때
-  if stack[-1][0] == h:
-    cnt = stack.pop()[1]
-    ans += cnt
+    if not stack or person < stack[-1][0]: # 스택이 비어 있거나, 더 작은 경우
+        stack.append([person, 1])
 
-    if stack:
-        ans += 1
-    stack.append((h, cnt+1))
+    elif person == stack[-1][0] : # 같을 경우
 
-  # 스택 끝 값의 키보다 작을 때
-  else:
-    stack.append((h, 1))
-    ans += 1
+        # 같은 높이와의 매칭
+        answer += stack[-1][1]
+        stack[-1][1] += 1
 
-# 결과값 출력
-print(ans)
-```
+    else: # 더 클 경우
+
+        # 왼쪽으로 가면서 작은 애들과의 연결고리 만들기
+        while stack and person > stack[-1][0]: # 높이가 같아질 때까지 계속 반복
+            answer += stack.pop()[-1]
+
+            # 작은 친구들 다 뺐을 때, 같은 애들이 있다면 묶기
+        if stack and person == stack[-1][0]:
+            answer += stack[-1][1]
+            stack[-1][1] += 1
+
+        else:
+            stack.append([person, 1])
+
+    if len(stack) > 1:
+        answer += 1
+
+print(answer)
 
 ### [병국](<./오아시스 재결합/병국.py>)
 
 ```py
 
-```
+````
 
 ### [성구](<./오아시스 재결합/성구.py>)
 
